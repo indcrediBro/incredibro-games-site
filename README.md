@@ -21,3 +21,7 @@ Before launch:
 4. Add a final favicon/OG image if desired.
 5. Add a privacy policy only if the final site uses analytics, forms, cookies, or other tracking that requires one.
 6. Add the final Steam link when the Steam page is live.
+
+
+### Image handling
+All game screenshots preserve their original aspect ratio. Game cards no longer crop screenshots to a forced 16:10 frame, and the featured Tethered Tilt images use contain-style presentation on desktop and stack naturally on small screens.
