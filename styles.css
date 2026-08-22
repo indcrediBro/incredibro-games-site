@@ -131,6 +131,10 @@ h3 {
   display: grid;
   place-items: center;
 }
+.hero-art-parallax {
+  transform: translateY(var(--parallax, 0px));
+  transition: transform .05s linear;
+}
 .hero-art img {
   width: min(480px, 100%);
   filter: drop-shadow(0 24px 50px rgba(0,0,0,.5));
@@ -189,8 +193,9 @@ h3 {
 }
 .featured-media > img:first-child {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
@@ -213,21 +218,40 @@ h3 {
 
 .game-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .game-card {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--surface);
   text-decoration: none;
+  will-change: transform;
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0);
   transition: transform .18s ease, border-color .18s ease, background .18s ease;
 }
-.game-card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-hover); }
+.game-card:hover {
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  transform: perspective(800px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg)) translateY(-4px);
+}
+.game-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120px circle at var(--mx, 50%) var(--my, 50%), rgba(255,113,21,.16), transparent 70%);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.game-card:hover::after { opacity: 1; }
 .game-card img {
   width: 100%;
   height: auto;
   aspect-ratio: auto;
   object-fit: contain;
   background: #0d0d0d;
+  transition: transform .35s ease;
 }
+.game-card:hover img { transform: scale(1.04); }
 .game-info { display: grid; gap: 5px; padding: 15px 16px 17px; }
 .game-info strong { font-size: 17px; line-height: 1.2; }
 .game-info small { color: var(--muted); font-size: 12px; }
@@ -332,14 +356,27 @@ h3 {
 
 /* Images preserve their intrinsic aspect ratio at every breakpoint. */
 .game-card, .featured-game { min-width: 0; }
-.game-card img, .featured-media img { max-width: 100%; }
-@media (max-width: 700px) {
-  .game-card img { width: 100%; height: auto; }
-  .hero-art img { height: auto; }
-  .about-art img { height: auto; }
+
+/* Scroll-reveal: elements fade + rise into place the first time they're approached. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s cubic-bezier(.2, .7, .2, 1);
+  transition-delay: 0ms;
 }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.game-card.reveal { transition-property: opacity, transform, border-color, background; }
+.game-card.reveal.is-visible:not(:hover) {
+  transform: perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0);
+}
+
+/* Button micro-press, for that "physical" click feel. */
+.button { transition: transform .12s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease; }
+.button:active { transform: scale(.96); }
+.button-primary:hover { box-shadow: 0 0 0 1px var(--accent), 0 8px 24px -8px rgba(255,113,21,.55); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
 }
