@@ -1,36 +1,31 @@
-# IncrediBro Games - Virtual Arcade v2
+# IncrediBro Games - 3D Arcade v2
 
-This version is intentionally more structured and less empty.
+A more structured virtual arcade for **IncrediBro Games**, using the supplied real 3D arcade cabinet model (`arcade-machine.glb`).
 
-## Key changes
+## Layout
 
-- Branding is consistently **IncrediBro Games**.
-- The hero uses the real **Neo Blast Arcade Cabinet** Sketchfab model supplied by the owner.
-- Game cards use live screenshots generated from the corresponding IncrediBro itch.io pages.
-- The floor is organized into:
-  - Featured Machines
-  - Arcade Floor
-  - Game Jam Vault
-  - Media Room
-  - Streaming Booth
-- The arcade catalogue is based on the current IncrediBro itch.io profile.
+- Entrance / studio identity
+- Featured Games floor
+- Game Jam Vault
+- Studio / Press area
+- Multiple real 3D arcade cabinets
+- Clickable machines with game information
+- Screenshots pulled from IncrediBro's itch.io game pages
+- First-person WASD + mouse exploration
 
-## Important external assets
+## Deploy
 
-The site uses:
-- Sketchfab embed for the Neo Blast Arcade Cabinet.
-- thum.io screenshot service for live screenshots of the itch.io game pages.
+Keep these four files in the same GitHub Pages published folder:
 
-If you want a fully self-contained production site, download/export your actual itch screenshots and replace the remote image URLs in `index.html` with local files under an `assets/` folder.
+- `index.html`
+- `style.css`
+- `app.js`
+- `arcade-machine.glb`
 
-## GitHub Pages
+Three.js and GLTFLoader are loaded from jsDelivr.
 
-Upload `index.html` and `style.css` to the repository. No build step is needed.
+## Screenshot sourcing
 
-## Sources used
+The page uses image assets hosted by itch.io's image CDN. They are referenced directly in `app.js`, so an internet connection is required.
 
-Current games/content were checked against:
-https://incredibro.itch.io/
-
-The supplied arcade cabinet:
-https://sketchfab.com/3d-models/neo-blast-arcade-cabinet-2f3ee5fba763476a9e280925218cad40
+The source pages include Tethered Tilt, Be Positive, Golf Breaker, Pixel Bomber and Taiyo.
