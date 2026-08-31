@@ -1,38 +1,36 @@
-# IncrediBro Games 3D Virtual Arcade
+# IncrediBro Games - Virtual Arcade v2
 
-This is a no-build-step Three.js version designed for GitHub Pages.
+This version is intentionally more structured and less empty.
 
-## How it works
+## Key changes
 
-The entire arcade is generated in the browser:
-- 3D floor, walls, ceiling and neon lighting
-- Arcade cabinets for individual games
-- First-person WASD + mouse movement
-- Click a machine to open its game information
-- Game links go to the existing IncrediBro itch.io pages
-- No backend is required
+- Branding is consistently **IncrediBro Games**.
+- The hero uses the real **Neo Blast Arcade Cabinet** Sketchfab model supplied by the owner.
+- Game cards use live screenshots generated from the corresponding IncrediBro itch.io pages.
+- The floor is organized into:
+  - Featured Machines
+  - Arcade Floor
+  - Game Jam Vault
+  - Media Room
+  - Streaming Booth
+- The arcade catalogue is based on the current IncrediBro itch.io profile.
 
-Three.js is loaded from jsDelivr, so the site needs an internet connection for the 3D engine.
+## Important external assets
+
+The site uses:
+- Sketchfab embed for the Neo Blast Arcade Cabinet.
+- thum.io screenshot service for live screenshots of the itch.io game pages.
+
+If you want a fully self-contained production site, download/export your actual itch screenshots and replace the remote image URLs in `index.html` with local files under an `assets/` folder.
 
 ## GitHub Pages
 
-Upload:
-- `index.html`
-- `style.css`
-- `app.js`
+Upload `index.html` and `style.css` to the repository. No build step is needed.
 
-to the repository that currently hosts the site.
+## Sources used
 
-## Important
+Current games/content were checked against:
+https://incredibro.itch.io/
 
-The machine artwork is intentionally generated rather than using final game screenshots. Once you have final Steam capsule/key art, those textures can replace the generated screen logos.
-
-The next production pass could add:
-1. Real game screenshots on the cabinets
-2. A proper press-kit download
-3. A Steam wish-list CTA
-4. An actual entrance/door animation
-5. Ambient arcade audio
-6. More rooms for unreleased projects
-7. A small Twitch/streaming booth
-8. A first-person mobile control system
+The supplied arcade cabinet:
+https://sketchfab.com/3d-models/neo-blast-arcade-cabinet-2f3ee5fba763476a9e280925218cad40

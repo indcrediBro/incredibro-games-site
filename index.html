@@ -3,62 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IncrediBro Games // The Arcade</title>
-<meta name="description" content="Enter the IncrediBro Games virtual arcade. Explore upcoming games, jam experiments, press information and occasional streams.">
+<title>IncrediBro Games // Virtual Arcade</title>
+<meta name="description" content="IncrediBro Games. Independent games, game-jam experiments and upcoming Steam releases.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="loading"><div class="loader-logo">INCREDIBRO<span>GAMES</span></div><div class="loader-bar"><i></i></div><p>BOOTING ARCADE...</p></div>
+<div class="crt"></div>
+<header class="topbar">
+  <a class="logo" href="#home"><span>IB</span><b>INCREDIBRO<br><em>GAMES</em></b></a>
+  <nav><a href="#featured">FEATURED</a><a href="#arcade">ARCADE</a><a href="#jams">JAMS</a><a href="#press">PRESS</a><a href="#stream">STREAM</a></nav>
+  <a class="play" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">PLAY ↗</a>
+</header>
 
-<div id="hud">
-  <div class="hud-brand"><b>IB</b><span>INCREDIBRO<br><small>VIRTUAL ARCADE</small></span></div>
-  <div class="hud-top">
-    <span id="zone">LOBBY</span>
-    <span class="online"><i></i> SYSTEM ONLINE</span>
+<main id="home">
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><i></i> INCREDIBRO GAMES // INDEPENDENT GAME STUDIO</div>
+    <h1>WELCOME TO<br><span>THE ARCADE.</span></h1>
+    <p>Games, experiments and game-jam survivors. Walk in, pick a machine and see what IncrediBro Games is building.</p>
+    <div class="hero-buttons"><a class="btn hot" href="#featured">ENTER THE ARCADE</a><a class="btn" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">BROWSE ALL GAMES ↗</a></div>
   </div>
-</div>
+  <div class="hero-machine">
+    <div class="machine-frame">
+      <div class="machine-label">INCREDIBRO GAMES // 001</div>
+      <iframe title="Neo Blast Arcade Cabinet" src="https://sketchfab.com/models/2f3ee5fba763476a9e280925218cad40/embed?autospin=0.15&autostart=1&ui_theme=dark&dnt=1" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+      <div class="machine-base"></div>
+    </div>
+  </div>
+  <div class="floor-grid"></div>
+  <div class="hero-marquee"><span>★ INCREDIBRO GAMES</span><span>★ 32+ GAME JAMS</span><span>★ STEAM GAMES IN DEVELOPMENT</span><span>★ MADE IN INDIA</span></div>
+</section>
 
-<div id="crosshair"><i></i></div>
+<section class="featured section" id="featured">
+  <div class="section-head"><div><small>01 // FEATURED MACHINES</small><h2>NOW PLAYING<span>_</span></h2></div><b>INSERT COIN</b></div>
+  <div class="featured-grid">
+    <article class="game-panel cyan">
+      <div class="shot"><img src="https://image.thum.io/get/width/1200/crop/760/noanimate/https://incredibro.itch.io/tethered-tilt" alt="Tethered Tilt screenshot from itch.io"><div class="screen-glass"></div><span class="machine-no">01</span></div>
+      <div class="game-copy"><div class="tags"><i>PUZZLE</i><i>UPCOMING</i><i>STEAM</i></div><h3>TETHERED TILT</h3><p>A short but infuriating puzzle game with leaderboards. Two cubes, one tether, and a lot of opportunities to ruin your own solution.</p><a href="https://incredibro.itch.io/tethered-tilt" target="_blank" rel="noreferrer" class="text-btn">VIEW GAME ↗</a></div>
+    </article>
+    <article class="game-panel pink">
+      <div class="shot"><img src="https://image.thum.io/get/width/1200/crop/760/noanimate/https://incredibro.itch.io/be-positive" alt="Be Positive screenshot from itch.io"><div class="screen-glass"></div><span class="machine-no">02</span></div>
+      <div class="game-copy"><div class="tags"><i>PUZZLE</i><i>STEAM PREP</i><i>VR</i></div><h3>BE POSITIVE</h3><p>Mr. Positive cannot move on his own. Manipulate polarity, reach the goal and keep the attitude positive. A jam winner now being prepared for Steam.</p><a href="https://incredibro.itch.io/be-positive" target="_blank" rel="noreferrer" class="text-btn">VIEW GAME ↗</a></div>
+    </article>
+  </div>
+</section>
 
-<div id="intro" class="panel visible">
-  <div class="panel-tag">WELCOME // 001</div>
-  <h1>ENTER THE<br><strong>INCREDIBRO<br>ARCADE.</strong></h1>
-  <p>A virtual showroom for games, game-jam experiments and whatever is currently being built.</p>
-  <button id="enter">ENTER ARCADE</button>
-  <div class="controls"><span>W A S D</span> MOVE <span>MOUSE</span> LOOK <span>CLICK</span> INTERACT</div>
-</div>
+<section class="arcade section" id="arcade">
+  <div class="section-head"><div><small>02 // THE FLOOR</small><h2>THE ARCADE<span>_</span></h2></div><a href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">VIEW ITCH CATALOGUE →</a></div>
+  <div class="cabinet-grid">
+    <a class="cabinet cyan" href="https://incredibro.itch.io/100-bullets-to-die" target="_blank" rel="noreferrer"><div class="cab-top">01</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/100-bullets-to-die" alt=""><strong>100 BULLETS<br>TO DIE</strong></div><div class="cab-controls"><i></i><i></i></div><h3>100 BULLETS TO DIE</h3><p>COUNTDOWN / SHOOTER</p></a>
+    <a class="cabinet yellow" href="https://incredibro.itch.io/golf-breaker" target="_blank" rel="noreferrer"><div class="cab-top">02</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/golf-breaker" alt=""><strong>GOLF<br>BREAKER</strong></div><div class="cab-controls"><i></i><i></i></div><h3>GOLF BREAKER</h3><p>ARCADE / HIGH SCORE</p></a>
+    <a class="cabinet purple" href="https://incredibro.itch.io/taiyo" target="_blank" rel="noreferrer"><div class="cab-top">03</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/taiyo" alt=""><strong>TAIYO</strong></div><div class="cab-controls"><i></i><i></i></div><h3>TAIYO</h3><p>PUZZLE / SPACE</p></a>
+    <a class="cabinet green" href="https://incredibro.itch.io/can-you-code-out" target="_blank" rel="noreferrer"><div class="cab-top">04</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/can-you-code-out" alt=""><strong>CAN YOU<br>CODE OUT?</strong></div><div class="cab-controls"><i></i><i></i></div><h3>CAN YOU CODE OUT?</h3><p>CODE / PLATFORMER</p></a>
+    <a class="cabinet pink" href="https://incredibro.itch.io/back-to-the-west" target="_blank" rel="noreferrer"><div class="cab-top">05</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/back-to-the-west" alt=""><strong>BACK TO<br>THE WEST</strong></div><div class="cab-controls"><i></i><i></i></div><h3>BACK TO THE WEST</h3><p>DECK BUILDER / WESTERN</p></a>
+    <a class="cabinet blue" href="https://incredibro.itch.io/the-night-shift" target="_blank" rel="noreferrer"><div class="cab-top">06</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/the-night-shift" alt=""><strong>THE<br>NIGHT SHIFT</strong></div><div class="cab-controls"><i></i><i></i></div><h3>THE NIGHT SHIFT</h3><p>HORROR / FIRST PERSON</p></a>
+    <a class="cabinet orange" href="https://incredibro.itch.io/wacky-wonderland" target="_blank" rel="noreferrer"><div class="cab-top">07</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/wacky-wonderland" alt=""><strong>WACKY<br>WONDERLAND</strong></div><div class="cab-controls"><i></i><i></i></div><h3>WACKY WONDERLAND</h3><p>PLATFORMER / TROLL</p></a>
+    <a class="cabinet violet" href="https://incredibro.itch.io/tank-city-survivors" target="_blank" rel="noreferrer"><div class="cab-top">08</div><div class="cab-screen"><img src="https://image.thum.io/get/width/900/crop/560/noanimate/https://incredibro.itch.io/tank-city-survivors" alt=""><strong>TANK CITY<br>SURVIVORS</strong></div><div class="cab-controls"><i></i><i></i></div><h3>TANK CITY SURVIVORS</h3><p>ROGUELIKE / ACTION</p></a>
+  </div>
+</section>
 
-<div id="info" class="panel">
-  <button class="close" id="closeInfo">×</button>
-  <div class="panel-tag" id="infoTag">GAME // 001</div>
-  <h2 id="infoTitle">Tethered Tilt</h2>
-  <p id="infoText"></p>
-  <div id="infoMeta"></div>
-  <a id="infoLink" class="action" target="_blank" rel="noreferrer">OPEN GAME ↗</a>
-</div>
+<section class="jams section" id="jams">
+  <div class="jam-room">
+    <div class="section-head"><div><small>03 // HIGH SCORE ARCHIVE</small><h2>GAME JAM<br>VAULT<span>_</span></h2></div><b>32+</b></div>
+    <p>Game jams are where a lot of the weird machines in this arcade were born. The catalogue currently spans shooters, puzzle games, platformers, racers, card games and experiments.</p>
+    <div class="jam-stats"><div><strong>32+</strong><span>JAMS</span></div><div><strong>3</strong><span>JAM WINNERS</span></div><div><strong>∞</strong><span>IDEAS</span></div></div>
+    <div class="winners"><span>★</span><b>JAM WINNERS</b><em>Golf Breaker · Be Positive · Can You Code Out?</em></div>
+    <a class="btn hot" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">OPEN THE VAULT ↗</a>
+  </div>
+</section>
 
-<div id="help">
-  <b>WASD</b> MOVE &nbsp; <b>MOUSE</b> LOOK &nbsp; <b>CLICK</b> INTERACT &nbsp; <b>ESC</b> RELEASE MOUSE
-</div>
+<section class="press section" id="press">
+  <div class="section-head"><div><small>04 // MEDIA ROOM</small><h2>PRESS KIT<span>_</span></h2></div></div>
+  <div class="press-grid">
+    <div class="press-main"><span>MEDIA ACCESS</span><h3>Need screenshots,<br>logos or game info?</h3><p>Press, creators, publishers and business enquiries can request the current IncrediBro Games media kit.</p><a class="btn hot" href="mailto:hello@incredibrogames.com?subject=IncrediBro%20Games%20Press%20Kit">REQUEST PRESS KIT</a></div>
+    <div class="contact"><small>CONTACT</small><h3>hello@<br>incredibrogames.com</h3><p>Press · Publishing · Business · Collaboration</p></div>
+  </div>
+</section>
 
-<div id="mobile">
-  <div class="stick" id="stick"><i></i></div>
-  <div class="mobile-look">DRAG TO LOOK</div>
-</div>
-
-<canvas id="scene"></canvas>
-
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module" src="app.js"></script>
+<section class="stream section" id="stream">
+  <div class="stream-box"><div class="live"><i></i> OCCASIONAL TRANSMISSION</div><h2>INCREDIBRO<br><span>LIVE</span></h2><p>Game development, playtesting, jams and the occasional game-playing detour.</p><a class="btn" href="https://www.twitch.tv/incrediball__" target="_blank" rel="noreferrer">VISIT TWITCH ↗</a></div>
+</section>
+</main>
+<footer><b>INCREDIBRO GAMES</b><span>MADE IN INDIA · MOSTLY SOLO · ALWAYS MAKING</span><a href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">ITCH.IO ↗</a></footer>
 </body>
 </html>
