@@ -75,7 +75,7 @@ poster("STEAM SOON",-16.7,-23,C.cyan);poster("HIGH SCORES",16.7,-23,C.green);
 
 // Game data, using screenshots surfaced from the IncrediBro itch pages.
 const games=[
- {name:"Tethered Tilt",tag:"UPCOMING",desc:"A short but infuriating puzzle game with leaderboards. Two cubes, a tether, and a very yellow floor.",url:"https://incredibro.itch.io/tethered-tilt",image:"https://img.itch.zone/aW1nLzE2NTczODY5LnBuZw%3D%3D/original/O1%2Bu%2F9.png",chips:["PUZZLE","3D","UPCOMING"],pos:[-6,0,-11],color:C.cyan},
+ {name:"Tethered Tilt",tag:"UPCOMING",desc:"A short but infuriating puzzle game with leaderboards. Two cubes, a tether, and a very yellow floor.",url:"https://incredibro.itch.io/tethered-tilt",image:"https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png",chips:["PUZZLE","3D","UPCOMING"],pos:[-6,0,-11],color:C.cyan},
  {name:"Be Positive",tag:"STEAM IN DEVELOPMENT",desc:"The magnetic maze that won a game jam is being expanded for a Steam release with 3D gameplay, VR compatibility, handcrafted levels and online leaderboards.",url:"https://incredibro.itch.io/be-positive",image:"https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png",chips:["PUZZLE","JAM WINNER","STEAM"],pos:[6,0,-11],color:C.green},
  {name:"100 Bullets To Die",tag:"2026 GAME JAM",desc:"Survive waves of AI-driven robot enemies with only 100 bullets. A recent GMTK Game Jam collaboration.",url:"https://incredibro.itch.io/100-bullets-to-die",image:"https://img.itch.zone/aW1nLzE2NTczODY5LnBuZw%3D%3D/original/O1%2Bu%2F9.png",chips:["SHOOTER","GMTK 2026","NEW"],pos:[-6,0,-18],color:C.pink},
  {name:"Golf Breaker",tag:"JAM WINNER",desc:"An updated, juiced-up take on Golf Pong with retro CRT vibes, power-ups and leaderboard chasing.",url:"https://incredibro.itch.io/golf-breaker",image:"https://img.itch.zone/aW1nLzE2OTEzNjk4LnBuZw%3D%3D/original/cUUXu6.png",chips:["ARCADE","RETRO","WINNER"],pos:[6,0,-18],color:C.yellow},
@@ -87,15 +87,22 @@ const games=[
 
 // Screenshot URLs below are sourced from the corresponding IncrediBro itch.io pages.
 
-const machineTemplate=new THREE.Group();
 const loader=new GLTFLoader();
+const frameClock=new THREE.Clock();
 let templateScene=null;
 loader.load("arcade-machine.glb",g=>{
  templateScene=g.scene;templateScene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
  games.forEach((game,i)=>addMachine(game,i));
-},undefined,e=>console.error("Arcade cabinet failed to load",e));
+},undefined,e=>{console.error("Arcade cabinet failed to load",e);document.body.classList.add("cabinet-fallback");games.forEach(addFallbackMachine);});
 
 const machineHits=[];
+function addFallbackMachine(game){
+ const g=new THREE.Group(); g.position.set(game.pos[0],0,game.pos[1]);
+ const body=box(2.8,3.8,1.15,0x111426); body.position.y=1.9; g.add(body);
+ const top=box(2.95,.16,1.25,game.color,game.color,4); top.position.y=3.82; g.add(top);
+ scene.add(g);
+ const hit=box(3.3,4.2,1.8,0); hit.material.transparent=true; hit.material.opacity=0; hit.position.set(game.pos[0],2.1,game.pos[1]); hit.userData.game=game; scene.add(hit); machineHits.push(hit);
+}
 function addMachine(game,index){
  const g=templateScene.clone(true);
  g.position.set(game.pos[0],game.pos[1],game.pos[2]);
@@ -150,7 +157,7 @@ function move(dt){
  camera.rotation.order="YXZ";camera.rotation.y=yaw;camera.rotation.x=pitch;
 }
 function updateLocation(){const z=camera.position.z;document.querySelector("#location").textContent=z>-9?"ENTRANCE":z>-27?"FEATURED FLOOR":z>-36?"JAM VAULT":"STUDIO / PRESS";}
-function animate(){requestAnimationFrame(animate);const dt=Math.min(new THREE.Clock().getDelta(),.05);move(dt);updateLocation();renderer.render(scene,camera)}animate();
+function animate(){requestAnimationFrame(animate);const dt=Math.min(frameClock.getDelta(),.05);move(dt);updateLocation();renderer.render(scene,camera)}animate();
 
 // menu
 document.querySelector("#menuBtn").onclick=()=>document.querySelector("#menu").classList.add("visible");
