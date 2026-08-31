@@ -49,12 +49,12 @@ light(0,5,2,C.purple,6,18);light(0,5,-46,C.yellow,5,16);
 
 // Entrance
 const sign=label("INCREDIBRO GAMES","#ff2bd6",30);sign.position.set(0,5.4,1);sign.scale.set(7.5,1.7,1);scene.add(sign);
-const sub=label("INSERT COIN TO EXPLORE","#00eaff",12);sub.position.set(0,4.35,1);sub.scale.set(4.5,.6,1);scene.add(sub);
+const sub=label("EXPLORE THE GAMES","#00eaff",12);sub.position.set(0,4.35,1);sub.scale.set(4.5,.6,1);scene.add(sub);
 
 // Back room signage
 function addSectionSign(text,z,c){const s=label(text,"#"+c.toString(16).padStart(6,"0"),18);s.position.set(0,5.2,z);s.scale.set(5.8,1.2,1);scene.add(s)}
-addSectionSign("FEATURED GAMES",-9,C.cyan);
-addSectionSign("JAM VAULT",-28,C.yellow);
+addSectionSign("GAMES",-9,C.cyan);
+addSectionSign("GAME JAMS",-28,C.yellow);
 addSectionSign("PRESS + STUDIO",-43,C.pink);
 
 // Shelves and decor make the room feel inhabited
@@ -118,62 +118,91 @@ function addMachine(game,index){
  light(game.pos[0],2.5,game.pos[2]-.7,game.color,2.8,7);
 }
 
-// interaction: mouse + touch only. No keyboard and no pointer-lock.
+// Mouse + touch only. No keyboard and no pointer-lock.
 const ray = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 const panel = document.querySelector("#gamePanel");
 const image = document.querySelector("#gameImage");
 let yaw = 0, pitch = 0;
 let moveTarget = null;
-let dragging = false, dragMoved = false;
-let pointerId = null, lastX = 0, lastY = 0, startX = 0, startY = 0;
+let activePointer = null;
+let dragging = false;
+let didDrag = false;
+let lastX = 0, lastY = 0;
+let downX = 0, downY = 0;
 
 function openGame(game){
  document.querySelector("#gameTag").textContent=game.tag;
  document.querySelector("#gameTitle").textContent=game.name;
  document.querySelector("#gameDesc").textContent=game.desc;
- image.src=game.image;image.alt=game.name+" screenshot";
- image.onerror=()=>{image.style.display="none"}; image.onload=()=>{image.style.display="block"};
+ image.style.display="block";
+ image.src=game.image;
+ image.alt=game.name+" screenshot";
+ image.onerror=()=>image.style.display="none";
+ image.onload=()=>image.style.display="block";
  document.querySelector("#chips").innerHTML=game.chips.map(x=>`<span class="chip">${x}</span>`).join("");
  document.querySelector("#gameLink").href=game.url;
  panel.classList.add("visible");
 }
 document.querySelector("#gameClose").onclick=()=>panel.classList.remove("visible");
 
-function setPointer(x,y){pointer.x=(x/innerWidth)*2-1;pointer.y=-(y/innerHeight)*2+1;ray.setFromCamera(pointer,camera)}
-function interact(x,y){
+function rayFromClient(x,y){
+ pointer.x=(x/innerWidth)*2-1;
+ pointer.y=-(y/innerHeight)*2+1;
+ ray.setFromCamera(pointer,camera);
+}
+
+function clickWorld(x,y){
  if(panel.classList.contains("visible")) return;
- setPointer(x,y);
+ rayFromClient(x,y);
  const machine=ray.intersectObjects(machineHits,false);
- if(machine.length){openGame(machine[0].object.userData.game);return}
+ if(machine.length){ openGame(machine[0].object.userData.game); return; }
  const ground=ray.intersectObjects([carpet,floor],false);
  if(ground.length){
    const p=ground[0].point;
-   moveTarget=new THREE.Vector3(THREE.MathUtils.clamp(p.x,-13.5,13.5),1.65,THREE.MathUtils.clamp(p.z,-46,7));
+   moveTarget=new THREE.Vector3(
+     THREE.MathUtils.clamp(p.x,-13.5,13.5),
+     1.65,
+     THREE.MathUtils.clamp(p.z,-45,7)
+   );
  }
 }
 
-canvas.addEventListener("pointerdown",e=>{
- if(e.pointerType==="mouse"&&e.button!==0) return;
- if(document.querySelector("#menu").classList.contains("visible")) return;
- pointerId=e.pointerId;dragging=true;dragMoved=false;
- startX=lastX=e.clientX;startY=lastY=e.clientY;
- canvas.setPointerCapture?.(e.pointerId);
-});
-canvas.addEventListener("pointermove",e=>{
- if(!dragging||e.pointerId!==pointerId)return;
- const dx=e.clientX-lastX,dy=e.clientY-lastY;
- if(Math.abs(e.clientX-startX)+Math.abs(e.clientY-startY)>8)dragMoved=true;
- yaw-=dx*.004;pitch-=dy*.003;pitch=THREE.MathUtils.clamp(pitch,-1.05,1.05);
- lastX=e.clientX;lastY=e.clientY;
-});
-canvas.addEventListener("pointerup",e=>{
- if(!dragging||e.pointerId!==pointerId)return;
- dragging=false;canvas.releasePointerCapture?.(e.pointerId);
- if(!dragMoved)interact(e.clientX,e.clientY);
- pointerId=null;
-});
-canvas.addEventListener("pointercancel",e=>{dragging=false;pointerId=null});
+function beginLook(e){
+ if(panel.classList.contains("visible")) return;
+ if(activePointer!==null) return;
+ activePointer=e.pointerId;
+ dragging=true;
+ didDrag=false;
+ downX=lastX=e.clientX;
+ downY=lastY=e.clientY;
+ canvas.setPointerCapture(e.pointerId);
+}
+function continueLook(e){
+ if(!dragging || e.pointerId!==activePointer) return;
+ const dx=e.clientX-lastX;
+ const dy=e.clientY-lastY;
+ if(Math.hypot(e.clientX-downX,e.clientY-downY)>7) didDrag=true;
+ yaw-=dx*0.004;
+ pitch-=dy*0.003;
+ pitch=THREE.MathUtils.clamp(pitch,-1.05,1.05);
+ lastX=e.clientX;
+ lastY=e.clientY;
+}
+function finishLook(e){
+ if(e.pointerId!==activePointer) return;
+ canvas.releasePointerCapture?.(e.pointerId);
+ const shouldClick=!didDrag;
+ dragging=false;
+ activePointer=null;
+ if(shouldClick) clickWorld(e.clientX,e.clientY);
+}
+
+canvas.addEventListener("pointerdown",beginLook,{passive:true});
+canvas.addEventListener("pointermove",continueLook,{passive:true});
+canvas.addEventListener("pointerup",finishLook,{passive:true});
+canvas.addEventListener("pointercancel",finishLook,{passive:true});
+canvas.addEventListener("lostpointercapture",()=>{dragging=false;activePointer=null});
 canvas.addEventListener("contextmenu",e=>e.preventDefault());
 
 function move(dt){
@@ -189,7 +218,7 @@ function move(dt){
  camera.position.y=1.65;
  camera.rotation.order="YXZ";camera.rotation.y=yaw;camera.rotation.x=pitch;
 }
-function updateLocation(){const z=camera.position.z;document.querySelector("#location").textContent=z>-9?"ENTRANCE":z>-27?"FEATURED FLOOR":z>-36?"JAM VAULT":"STUDIO / PRESS"}
+function updateLocation(){const z=camera.position.z;document.querySelector("#location").textContent=z>-9?"ENTRANCE":z>-27?"FEATURED FLOOR":z>-36?"GAME JAMS":"STUDIO / PRESS"}
 function animate(){requestAnimationFrame(animate);const dt=Math.min(frameClock.getDelta(),.05);move(dt);updateLocation();renderer.render(scene,camera)}animate();
 
 // menu
