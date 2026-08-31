@@ -118,52 +118,85 @@ function addMachine(game,index){
  light(game.pos[0],2.5,game.pos[2]-.7,game.color,2.8,7);
 }
 
-// interaction
-const ray=new THREE.Raycaster(), center=new THREE.Vector2(0,0);
-const panel=document.querySelector("#gamePanel");
-const image=document.querySelector("#gameImage");
+// interaction: mouse + touch only. No keyboard and no pointer-lock.
+const ray = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+const panel = document.querySelector("#gamePanel");
+const image = document.querySelector("#gameImage");
+let yaw = 0, pitch = 0;
+let moveTarget = null;
+let dragging = false, dragMoved = false;
+let pointerId = null, lastX = 0, lastY = 0, startX = 0, startY = 0;
+
 function openGame(game){
  document.querySelector("#gameTag").textContent=game.tag;
  document.querySelector("#gameTitle").textContent=game.name;
  document.querySelector("#gameDesc").textContent=game.desc;
  image.src=game.image;image.alt=game.name+" screenshot";
+ image.onerror=()=>{image.style.display="none"}; image.onload=()=>{image.style.display="block"};
  document.querySelector("#chips").innerHTML=game.chips.map(x=>`<span class="chip">${x}</span>`).join("");
  document.querySelector("#gameLink").href=game.url;
- panel.classList.add("visible");document.exitPointerLock();
+ panel.classList.add("visible");
 }
 document.querySelector("#gameClose").onclick=()=>panel.classList.remove("visible");
-canvas.addEventListener("mousedown",()=>{
- if(document.pointerLockElement!==canvas){canvas.requestPointerLock();return}
- ray.setFromCamera(center,camera);const hits=ray.intersectObjects(machineHits,false);
- if(hits.length)openGame(hits[0].object.userData.game);
-});
 
-// camera
-const keys={};let yaw=0,pitch=0;
-addEventListener("keydown",e=>{keys[e.code]=true;if(e.code==="Escape")document.exitPointerLock()});
-addEventListener("keyup",e=>keys[e.code]=false);
-document.addEventListener("mousemove",e=>{
- if(document.pointerLockElement!==canvas)return;
- yaw-=e.movementX*.0022;pitch-=e.movementY*.0018;
- pitch=THREE.MathUtils.clamp(pitch,-1.25,1.25);
+function setPointer(x,y){pointer.x=(x/innerWidth)*2-1;pointer.y=-(y/innerHeight)*2+1;ray.setFromCamera(pointer,camera)}
+function interact(x,y){
+ if(panel.classList.contains("visible")) return;
+ setPointer(x,y);
+ const machine=ray.intersectObjects(machineHits,false);
+ if(machine.length){openGame(machine[0].object.userData.game);return}
+ const ground=ray.intersectObjects([carpet,floor],false);
+ if(ground.length){
+   const p=ground[0].point;
+   moveTarget=new THREE.Vector3(THREE.MathUtils.clamp(p.x,-13.5,13.5),1.65,THREE.MathUtils.clamp(p.z,-46,7));
+ }
+}
+
+canvas.addEventListener("pointerdown",e=>{
+ if(e.pointerType==="mouse"&&e.button!==0) return;
+ if(document.querySelector("#menu").classList.contains("visible")) return;
+ pointerId=e.pointerId;dragging=true;dragMoved=false;
+ startX=lastX=e.clientX;startY=lastY=e.clientY;
+ canvas.setPointerCapture?.(e.pointerId);
 });
+canvas.addEventListener("pointermove",e=>{
+ if(!dragging||e.pointerId!==pointerId)return;
+ const dx=e.clientX-lastX,dy=e.clientY-lastY;
+ if(Math.abs(e.clientX-startX)+Math.abs(e.clientY-startY)>8)dragMoved=true;
+ yaw-=dx*.004;pitch-=dy*.003;pitch=THREE.MathUtils.clamp(pitch,-1.05,1.05);
+ lastX=e.clientX;lastY=e.clientY;
+});
+canvas.addEventListener("pointerup",e=>{
+ if(!dragging||e.pointerId!==pointerId)return;
+ dragging=false;canvas.releasePointerCapture?.(e.pointerId);
+ if(!dragMoved)interact(e.clientX,e.clientY);
+ pointerId=null;
+});
+canvas.addEventListener("pointercancel",e=>{dragging=false;pointerId=null});
+canvas.addEventListener("contextmenu",e=>e.preventDefault());
+
 function move(dt){
- if(panel.classList.contains("visible"))return;
- const d=new THREE.Vector3((keys.KeyD?1:0)-(keys.KeyA?1:0),0,(keys.KeyS?1:0)-(keys.KeyW?1:0));
- if(!d.lengthSq())return;d.normalize();const speed=(keys.ShiftLeft?6.5:4.3);
- const f=new THREE.Vector3(-Math.sin(yaw),0,-Math.cos(yaw));const r=new THREE.Vector3(Math.cos(yaw),0,-Math.sin(yaw));
- camera.position.addScaledVector(f,d.z*speed*dt);camera.position.addScaledVector(r,d.x*speed*dt);
- camera.position.x=THREE.MathUtils.clamp(camera.position.x,-14.2,14.2);camera.position.z=THREE.MathUtils.clamp(camera.position.z,-45,8);camera.position.y=1.65;
+ if(panel.classList.contains("visible")){moveTarget=null;return}
+ if(moveTarget){
+   const d=new THREE.Vector3().subVectors(moveTarget,camera.position);d.y=0;
+   const distance=d.length();
+   if(distance<.08){camera.position.copy(moveTarget);moveTarget=null}
+   else{d.normalize();camera.position.addScaledVector(d,Math.min(4.5,distance*5)*dt)}
+ }
+ camera.position.x=THREE.MathUtils.clamp(camera.position.x,-14.2,14.2);
+ camera.position.z=THREE.MathUtils.clamp(camera.position.z,-45,8);
+ camera.position.y=1.65;
  camera.rotation.order="YXZ";camera.rotation.y=yaw;camera.rotation.x=pitch;
 }
-function updateLocation(){const z=camera.position.z;document.querySelector("#location").textContent=z>-9?"ENTRANCE":z>-27?"FEATURED FLOOR":z>-36?"JAM VAULT":"STUDIO / PRESS";}
+function updateLocation(){const z=camera.position.z;document.querySelector("#location").textContent=z>-9?"ENTRANCE":z>-27?"FEATURED FLOOR":z>-36?"JAM VAULT":"STUDIO / PRESS"}
 function animate(){requestAnimationFrame(animate);const dt=Math.min(frameClock.getDelta(),.05);move(dt);updateLocation();renderer.render(scene,camera)}animate();
 
 // menu
 document.querySelector("#menuBtn").onclick=()=>document.querySelector("#menu").classList.add("visible");
 document.querySelector("#menuClose").onclick=()=>document.querySelector("#menu").classList.remove("visible");
 document.querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>{document.querySelector("#menu").classList.remove("visible");const z={featured:-11,jam:-31,press:-43}[b.dataset.jump];camera.position.set(0,1.65,z+5);yaw=0;});
-document.querySelector("#enter").onclick=()=>{document.querySelector("#intro").classList.remove("visible");canvas.requestPointerLock()};
+document.querySelector("#enter").onclick=()=>document.querySelector("#intro").classList.remove("visible");
 
 addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 setTimeout(()=>{document.querySelector("#boot").style.opacity=0;setTimeout(()=>document.querySelector("#boot").remove(),600)},1800);
