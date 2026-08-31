@@ -1,27 +1,38 @@
-# IncrediBro Games website
+# IncrediBro Games 3D Virtual Arcade
 
-Static, framework-free production starter for the IncrediBro Games homepage.
+This is a no-build-step Three.js version designed for GitHub Pages.
 
-## Structure
+## How it works
 
-- `index.html` semantic homepage
-- `styles.css` responsive styling and accessibility states
-- `script.js` mobile navigation + dynamic copyright year
-- `assets/` actual uploaded IncrediBro branding and game screenshots
+The entire arcade is generated in the browser:
+- 3D floor, walls, ceiling and neon lighting
+- Arcade cabinets for individual games
+- First-person WASD + mouse movement
+- Click a machine to open its game information
+- Game links go to the existing IncrediBro itch.io pages
+- No backend is required
 
-## Deploy
+Three.js is loaded from jsDelivr, so the site needs an internet connection for the 3D engine.
 
-This is a static site. Upload the folder to any static host such as GitHub Pages, Cloudflare Pages, Netlify, Vercel, or a traditional web host.
+## GitHub Pages
 
-Before launch:
+Upload:
+- `index.html`
+- `style.css`
+- `app.js`
 
-1. Buy/configure the final domain.
-2. Create `hello@incredibrogames.com` with your email provider.
-3. Replace any placeholder game links if an itch slug differs.
-4. Add a final favicon/OG image if desired.
-5. Add a privacy policy only if the final site uses analytics, forms, cookies, or other tracking that requires one.
-6. Add the final Steam link when the Steam page is live.
+to the repository that currently hosts the site.
 
+## Important
 
-### Image handling
-All game screenshots preserve their original aspect ratio. Game cards no longer crop screenshots to a forced 16:10 frame, and the featured Tethered Tilt images use contain-style presentation on desktop and stack naturally on small screens.
+The machine artwork is intentionally generated rather than using final game screenshots. Once you have final Steam capsule/key art, those textures can replace the generated screen logos.
+
+The next production pass could add:
+1. Real game screenshots on the cabinets
+2. A proper press-kit download
+3. A Steam wish-list CTA
+4. An actual entrance/door animation
+5. Ambient arcade audio
+6. More rooms for unreleased projects
+7. A small Twitch/streaming booth
+8. A first-person mobile control system

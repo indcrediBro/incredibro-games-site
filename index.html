@@ -1,163 +1,64 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b0b">
-  <meta name="description" content="IncrediBro Games. Solo game development, experiments, and games by IncrediBro.">
-  <meta property="og:title" content="IncrediBro Games">
-  <meta property="og:description" content="Solo game development, experiments, and games by IncrediBro.">
-  <meta property="og:type" content="website">
-  <title>IncrediBro Games</title>
-  <link rel="preload" as="image" href="assets/incredibro-ball-logo.png">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IncrediBro Games // The Arcade</title>
+<meta name="description" content="Enter the IncrediBro Games virtual arcade. Explore upcoming games, jam experiments, press information and occasional streams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="IncrediBro Games home">
-        <img src="assets/incredibro-ball-logo.png" alt="IncrediBro Games logo" width="570" height="375">
-      </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="#games">Games</a>
-        <a href="#about">About</a>
-        <a href="#stream">Stream</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<div id="loading"><div class="loader-logo">INCREDIBRO<span>GAMES</span></div><div class="loader-bar"><i></i></div><p>BOOTING ARCADE...</p></div>
 
-  <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Independent game development</p>
-          <h1 id="hero-title">IncrediBro<br>Games</h1>
-          <p class="hero-lede">Mostly solo. Sometimes with friends. I like making pretty much everything.</p>
-          <div class="actions">
-            <a class="button button-primary" href="#games">Explore games</a>
-            <a class="button" href="https://www.twitch.tv/incrediball__" target="_blank" rel="noopener">Watch on Twitch</a>
-          </div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="hero-art-parallax">
-            <img src="assets/incredibro-avatar.png" alt="" width="1080" height="1080" fetchpriority="high">
-          </div>
-        </div>
-      </div>
-    </section>
+<div id="hud">
+  <div class="hud-brand"><b>IB</b><span>INCREDIBRO<br><small>VIRTUAL ARCADE</small></span></div>
+  <div class="hud-top">
+    <span id="zone">LOBBY</span>
+    <span class="online"><i></i> SYSTEM ONLINE</span>
+  </div>
+</div>
 
-    <section class="section" id="featured" aria-labelledby="featured-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Currently making</p>
-            <h2 id="featured-title">Tethered Tilt</h2>
-          </div>
-          <span class="section-meta">Upcoming</span>
-        </div>
-        <article class="featured-game">
-          <div class="featured-media">
-            <img src="assets/games/tethered-tilt/03-cover.png" alt="Tethered Tilt key art showing the two tethered player cubes and the game's title" width="630" height="500" loading="eager">
-          </div>
-          <div class="featured-copy">
-            <p class="eyebrow">Puzzle game</p>
-            <h3>Tethered Tilt</h3>
-            <p>A puzzle game built around movement, gravity, and keeping everything where it belongs.</p>
-            <div class="actions">
-              <a class="button button-primary" href="https://incredibro.itch.io/tethered-tilt" target="_blank" rel="noopener">View game</a>
-              <a class="button" href="https://incredibro.itch.io/tethered-tilt" target="_blank" rel="noopener">Play on itch.io</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+<div id="crosshair"><i></i></div>
 
-    <section class="section" id="games" aria-labelledby="games-title">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Selected work</p>
-            <h2 id="games-title">Games</h2>
-          </div>
-          <a class="text-link" href="https://incredibro.itch.io/" target="_blank" rel="noopener">View all on itch.io <span aria-hidden="true">→</span></a>
-        </div>
-        <div class="game-grid">
-          <a class="game-card" href="https://incredibro.itch.io/be-positive" target="_blank" rel="noopener">
-            <img src="assets/games/be-positive/02.png" alt="Be Positive! game screenshot" width="999" height="566" loading="lazy">
-            <span class="game-info"><strong>Be Positive!</strong><small>Puzzle</small></span>
-          </a>
-          <a class="game-card" href="https://incredibro.itch.io/golf-breaker" target="_blank" rel="noopener">
-            <img src="assets/games/golf-breaker/02.png" alt="Golf Breaker arcade cabinet showing the game's title and gameplay" width="720" height="720" loading="lazy">
-            <span class="game-info"><strong>Golf Breaker</strong><small>Arcade</small></span>
-          </a>
-          <a class="game-card" href="https://incredibro.itch.io/pixel-bomber" target="_blank" rel="noopener">
-            <img src="assets/games/pixel-bomber/02.png" alt="Pixel Bomber arcade cabinet showing the game's title and gameplay" width="817" height="813" loading="lazy">
-            <span class="game-info"><strong>Pixel Bomber</strong><small>Arcade</small></span>
-          </a>
-          <a class="game-card" href="https://incredibro.itch.io/the-night-shift" target="_blank" rel="noopener">
-            <img src="assets/games/the-night-shift/02.jpg" alt="The Night Shift key art with title treatment" width="1248" height="832" loading="lazy">
-            <span class="game-info"><strong>The Night Shift</strong><small>Survival Horror</small></span>
-          </a>
-        </div>
-      </div>
-    </section>
+<div id="intro" class="panel visible">
+  <div class="panel-tag">WELCOME // 001</div>
+  <h1>ENTER THE<br><strong>INCREDIBRO<br>ARCADE.</strong></h1>
+  <p>A virtual showroom for games, game-jam experiments and whatever is currently being built.</p>
+  <button id="enter">ENTER ARCADE</button>
+  <div class="controls"><span>W A S D</span> MOVE <span>MOUSE</span> LOOK <span>CLICK</span> INTERACT</div>
+</div>
 
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container about-grid">
-        <div class="about-art">
-          <img src="assets/incredibro-avatar.png" alt="IncrediBro baseball avatar" width="1080" height="1080" loading="lazy">
-        </div>
-        <div class="about-copy">
-          <p class="eyebrow">About</p>
-          <h2 id="about-title">Hi, I'm IncrediBro.</h2>
-          <p>I've been making games for about four years, mostly as a hobby. I've made 32 game-jam games, usually solo, occasionally with other developers and artists. I don't stick to one genre. If I have an idea, I like trying to make it.</p>
-        </div>
-        <div class="stats" aria-label="IncrediBro development stats">
-          <div><strong data-count-to="4" data-suffix="+">4+</strong><span>years making games</span></div>
-          <div><strong data-count-to="32">32</strong><span>game jams</span></div>
-          <div><strong>∞</strong><span>ideas</span></div>
-        </div>
-      </div>
-    </section>
+<div id="info" class="panel">
+  <button class="close" id="closeInfo">×</button>
+  <div class="panel-tag" id="infoTag">GAME // 001</div>
+  <h2 id="infoTitle">Tethered Tilt</h2>
+  <p id="infoText"></p>
+  <div id="infoMeta"></div>
+  <a id="infoLink" class="action" target="_blank" rel="noreferrer">OPEN GAME ↗</a>
+</div>
 
-    <section class="section stream-section" id="stream" aria-labelledby="stream-title">
-      <div class="container stream-row">
-        <div>
-          <p class="eyebrow">Sometimes I stream</p>
-          <h2 id="stream-title">Game development & games.</h2>
-          <p>I occasionally stream development, playtesting, game jams, and whatever I'm playing.</p>
-        </div>
-        <a class="button" href="https://www.twitch.tv/incrediball__" target="_blank" rel="noopener">Visit Twitch</a>
-      </div>
-    </section>
+<div id="help">
+  <b>WASD</b> MOVE &nbsp; <b>MOUSE</b> LOOK &nbsp; <b>CLICK</b> INTERACT &nbsp; <b>ESC</b> RELEASE MOUSE
+</div>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="container contact-row">
-        <div>
-          <p class="eyebrow">Get in touch</p>
-          <h2 id="contact-title">Want to talk games?</h2>
-          <p>Publishing, collaboration, press, or anything business-related.</p>
-        </div>
-        <a class="email" href="mailto:hello@incredibrogames.com">hello@incredibrogames.com</a>
-      </div>
-    </section>
-  </main>
+<div id="mobile">
+  <div class="stick" id="stick"><i></i></div>
+  <div class="mobile-look">DRAG TO LOOK</div>
+</div>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>© <span id="year">2026</span> IncrediBro Games</span>
-      <div class="footer-links">
-        <a href="https://incredibro.itch.io/" target="_blank" rel="noopener">itch.io</a>
-        <a href="https://www.twitch.tv/incrediball__" target="_blank" rel="noopener">Twitch</a>
-        <a href="mailto:hello@incredibrogames.com">Email</a>
-      </div>
-    </div>
-  </footer>
-  <script src="script.js" defer></script>
+<canvas id="scene"></canvas>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
