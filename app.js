@@ -38,7 +38,7 @@ function cabinet(x,z,screenTexture,accent){
  const light=new THREE.PointLight(accent,10,8);light.position.set(0,3.6,1.2);g.add(light);return g;
 }
 const cabinetAnchors={};
-function addCabinetAnchor(id,x,z){ const v=new THREE.Vector3(x,3.45,z+0.82); cabinetAnchors[id]=v; }
+function addCabinetAnchor(id,x,z){ const v=new THREE.Vector3(x,3.45,z+0.69); cabinetAnchors[id]=v; }
 cabinet(-4,-7,'https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png',0x00eaff);
 cabinet(4,-7,'https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png',0xff2bd6);
 cabinet(-5,-19,'https://img.itch.zone/aW1nLzE2OTEzNjk4LnBuZw%3D%3D/original/cUUXu6.png',0xffe600);
