@@ -1,67 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IncrediBro Games</title>
-<meta name="description" content="IncrediBro Games. Games, experiments, upcoming Steam releases, press information and more from IncrediBro Games.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="boot"><div class="boot-logo">INCREDIBRO<br><span>GAMES</span></div><div class="bootbar"><i></i></div><small>LOADING INCREDIBRO GAMES</small></div>
-
-<header>
-  <a class="brand" href="#"><b>IB</b><span>IncrediBro<br><em>Games</em></span></a>
-  <div class="location"><span id="location">HOME</span><i></i></div>
-  <button id="menuBtn">MENU</button>
-</header>
-
-<div id="menu" class="overlay">
-  <div class="menu-box">
-    <button class="x" id="menuClose">×</button>
-    <small>SITE MENU</small>
-    <h2>EXPLORE<br><strong>INCREDIBRO GAMES</strong></h2>
-    <button data-jump="featured">01 / GAMES</button>
-    <button data-jump="jam">02 / GAME JAMS</button>
-    <button data-jump="press">03 / PRESS + CONTACT</button>
-    <a href="https://incredibro.itch.io/" target="_blank">04 / ITCH CATALOGUE ↗</a>
-    <a href="https://www.twitch.tv/incrediball__" target="_blank">05 / STREAM ↗</a>
-  </div>
-</div>
-
-<div id="intro" class="overlay visible">
-  <div class="intro-box">
-    <small>INCREDIBRO GAMES PRESENTS</small>
-    <h1>WELCOME TO<br><strong>INCREDIBRO GAMES.</strong></h1>
-    <p>Explore the games, experiments and projects behind IncrediBro Games.</p>
-    <button id="enter">EXPLORE</button>
-    <div class="hint">DRAG TO LOOK &nbsp; • &nbsp; CLICK / TAP TO MOVE &nbsp; • &nbsp; CLICK / TAP A GAME</div>
-  </div>
-</div>
-
-<div id="gamePanel" class="game-panel">
-  <button id="gameClose">×</button>
-  <div class="game-image"><img id="gameImage" alt=""></div>
-  <div class="game-copy">
-    <small id="gameTag">FEATURED</small>
-    <h2 id="gameTitle">Tethered Tilt</h2>
-    <p id="gameDesc"></p>
-    <div id="chips"></div>
-    <a id="gameLink" target="_blank" rel="noreferrer">OPEN GAME ↗</a>
-  </div>
-</div>
-
-<div id="hud">
-  <div><b>DRAG</b> LOOK</div><div><b>CLICK / TAP</b> WALK</div><div><b>CLICK / TAP</b> SELECT</div>
-</div>
-<div id="crosshair"></div>
-<canvas id="scene"></canvas>
-
-<script type="importmap">
-{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"}}
-</script>
-<script type="module" src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IncrediBro Games</title><meta name="description" content="IncrediBro Games creates playful, experimental and polished games."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header><a class="brand" href="#home"><b>IB</b><span>INCREDIBRO<br><em>GAMES</em></span></a><nav><a href="#games">GAMES</a><a href="#jams">JAMS</a><a href="#studio">STUDIO</a><a href="#press">PRESS</a></nav><button id="menu">MENU</button></header>
+<main>
+<section id="home" class="hero"><div class="copy"><small>INDEPENDENT GAME STUDIO · SURAT, INDIA</small><h1>WE MAKE<br><span>GAMES.</span></h1><p>Small team energy. Big ideas. A growing collection of strange, satisfying and occasionally explosive experiments.</p><a class="cta" href="#games">EXPLORE THE GAMES ↓</a></div><div class="sign">INCREDIBRO<br><i>GAMES</i></div><div class="gridfloor"></div></section>
+<section id="games" class="section featured"><div class="intro"><small>01 / FEATURED</small><h2>GAMES<br><span>IN PROGRESS.</span></h2><p>Current projects and releases worth keeping an eye on.</p></div><div class="machines">
+<button class="machine" data-game="tethered"><div class="cab"><strong>TETHERED TILT</strong><div class="screen"><img src="https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png"></div><div class="buttons"><i></i><i></i><i></i></div></div><small>UPCOMING · STEAM</small><b>Tethered Tilt</b></button>
+<button class="machine" data-game="positive"><div class="cab green"><strong>BE POSITIVE</strong><div class="screen"><img src="https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png"></div><div class="buttons"><i></i><i></i><i></i></div></div><small>STEAM · IN DEVELOPMENT</small><b>Be Positive</b></button>
+</div></section>
+<section class="section catalogue"><div class="intro"><small>02 / CATALOGUE</small><h2>MORE<br><span>THINGS TO PLAY.</span></h2><p>Games made across releases, prototypes and experiments.</p></div><div class="tiles"><button data-game="bullets"><span><small>GMTK 2026</small><b>100 Bullets To Die</b></span></button><button data-game="golf" class="golf"><span><small>ARCADE</small><b>Golf Breaker</b></span></button><button data-game="pixel"><span><small>PIXEL ACTION</small><b>Pixel Bomber</b></span></button><button data-game="taiyo" class="taiyo"><span><small>PUZZLE</small><b>Taiyo</b></span></button><button data-game="west"><span><small>DECK BUILDER</small><b>Back To The West</b></span></button><button data-game="night"><span><small>HORROR</small><b>The Night Shift</b></span></button></div><a class="textlink" href="https://incredibro.itch.io/" target="_blank">SEE THE FULL ITCH CATALOGUE ↗</a></section>
+<section id="jams" class="section jams"><div><small>03 / GAME JAMS</small><div class="number">32<span>+</span></div><h2>JAMS.<br><em>LOTS OF THEM.</em></h2><p>Four years of making games under ridiculous deadlines. Some became releases. Some became lessons. All became prototypes.</p><div class="posters"><b>GMTK</b><b>JAME GAM</b><b>MICRO JAM</b><b>CURDLE</b></div></div></section>
+<section id="studio" class="section studio"><div class="studio-card"><small>04 / THE STUDIO</small><h2>SMALL<br><span>BY DESIGN.</span></h2><p>IncrediBro Games is an independent game studio focused on compact, characterful games. The work moves between puzzle games, arcade experiments, prototypes and whatever interesting idea refuses to leave us alone.</p><div class="stats"><div><b>4+</b><small>YEARS</small></div><div><b>32+</b><small>GAME JAMS</small></div><div><b>1</b><small>VERY BUSY DEV</small></div></div></div></section>
+<section id="press" class="section press"><div class="pressgrid"><div><small>05 / PRESS + CONTACT</small><h2>LET'S<br><span>TALK.</span></h2><p>Press, publishing, collaborations or just want to say hello?</p><a class="cta" href="mailto:hello@incredibrogames.com">hello@incredibrogames.com</a></div><div class="links"><a href="https://incredibro.itch.io/" target="_blank"><b>ITCH.IO</b><span>PLAY THE CATALOGUE ↗</span></a><a href="https://www.twitch.tv/incrediball__" target="_blank"><b>TWITCH</b><span>OCCASIONAL STREAMS ↗</span></a><a href="mailto:hello@incredibrogames.com?subject=Press%20Kit%20Request"><b>PRESS KIT</b><span>REQUEST MATERIALS ↗</span></a></div></div><footer>© 2026 INCREDIBRO GAMES</footer></section>
+</main>
+<div id="modal"><button id="close">×</button><div class="modalbox"><img id="mimg"><div><small id="mtag"></small><h2 id="mtitle"></h2><p id="mdesc"></p><div id="chips"></div><a id="mlink" class="cta" target="_blank">VIEW GAME ↗</a></div></div></div>
+<script type="module" src="app.js"></script></body></html>
