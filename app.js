@@ -37,11 +37,21 @@ function cabinet(x,z,screenTexture,accent){
  for(let i=0;i<3;i++){const b=new THREE.Mesh(new THREE.SphereGeometry(.11,12,12),new THREE.MeshBasicMaterial({color:i===1?0xff2bd6:accent}));b.position.set(-.35+i*.35,2.42,.99);g.add(b)}
  const light=new THREE.PointLight(accent,10,8);light.position.set(0,3.6,1.2);g.add(light);return g;
 }
+const cabinetAnchors={};
+function addCabinetAnchor(id,x,z){ const v=new THREE.Vector3(x,3.45,z+0.82); cabinetAnchors[id]=v; }
 cabinet(-4,-7,'https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png',0x00eaff);
 cabinet(4,-7,'https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png',0xff2bd6);
 cabinet(-5,-19,'https://img.itch.zone/aW1nLzE2OTEzNjk4LnBuZw%3D%3D/original/cUUXu6.png',0xffe600);
 cabinet(0,-23,'https://img.itch.zone/aW1nLzE2NTczODY5LnBuZw%3D%3D/original/O1%2Bu%2F9.png',0x00eaff);
 cabinet(5,-27,'https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png',0xff2bd6);
+// Extra screen so every featured/catelogue card has a physical destination in the scene.
+cabinet(-5,-31,'',0xffe600);
+addCabinetAnchor('tethered',-4,-7);
+addCabinetAnchor('positive',4,-7);
+addCabinetAnchor('golf',-5,-19);
+addCabinetAnchor('taiyo',0,-23);
+addCabinetAnchor('tethered2',5,-27);
+addCabinetAnchor('bullets',-5,-31);
 
 // Large physical letters at the end of the route.
 function makeTextSprite(text,color){const c=document.createElement('canvas');c.width=1024;c.height=256;const x=c.getContext('2d');x.clearRect(0,0,c.width,c.height);x.font='bold 92px Arial';x.textAlign='center';x.textBaseline='middle';x.fillStyle=color;x.shadowBlur=24;x.shadowColor=color;x.fillText(text,512,128);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true}));s.scale.set(9,2.25,1);return s}
@@ -51,10 +61,35 @@ let scrollTarget=0,scrollPos=0,mouseX=0,mouseY=0,lookX=0,lookY=0;let maxScroll=1
 function sync(){maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);scrollTarget=scrollY/maxScroll}
 addEventListener('scroll',sync,{passive:true});sync();
 addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;mouseX=(e.clientX/innerWidth-.5);mouseY=(e.clientY/innerHeight-.5)},{passive:true});
+
+// The game labels are DOM elements for crisp text and accessibility, but their position is
+// calculated from the actual 3D screen anchors every frame. This makes them ride the
+// cabinet screens instead of floating with the HTML sections.
+const projectedHotspots=[
+  ['h1','tethered'],['h2','positive'],['cards','bullets'],['c2','taiyo'],['c3','golf']
+].map(([cls,id])=>({el:document.querySelector('.'+cls),anchor:cabinetAnchors[id]}));
+const projectV=new THREE.Vector3();
+function updateHotspots(){
+  for(const item of projectedHotspots){
+    if(!item.el||!item.anchor) continue;
+    projectV.copy(item.anchor).project(camera);
+    const visible=projectV.z>-1 && projectV.z<1 && projectV.x>-1.18 && projectV.x<1.18 && projectV.y>-1.12 && projectV.y<1.12;
+    if(!visible){ item.el.style.visibility='hidden'; continue; }
+    const x=(projectV.x*.5+.5)*innerWidth;
+    const y=(-projectV.y*.5+.5)*innerHeight;
+    const distance=camera.position.distanceTo(item.anchor);
+    const scale=Math.max(.72,Math.min(1.0,8.5/distance));
+    item.el.style.visibility='visible';
+    item.el.style.left=x+'px';
+    item.el.style.top=y+'px';
+    item.el.style.transform=`translate3d(-50%,-50%,0) scale(${scale})`;
+  }
+}
 function animate(){requestAnimationFrame(animate);scrollPos+=(scrollTarget-scrollPos)*.075;lookX+=(mouseX-lookX)*.04;lookY+=(mouseY-lookY)*.04;
  const routeZ=15-scrollPos*49; camera.position.x=lookX*1.0;camera.position.y=2.8-lookY*.35;camera.position.z=routeZ; camera.rotation.y=lookX*.055; camera.rotation.x=-lookY*.025;
  // move light accents with the route for a continuous cinematic feel
  cyan.position.z=routeZ-3; pink.position.z=routeZ-8; yellow.position.z=routeZ-15;
+ updateHotspots();
  renderer.render(scene,camera)}animate();
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);sync()});
 
