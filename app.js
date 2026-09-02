@@ -63,11 +63,11 @@ function cabinet(id,x,z,screenTexture,accent){
 const cabinetAnchors={};
 function addCabinetAnchor(id,x,z){ cabinetAnchors[id]=new THREE.Vector3(x,3.45,z+.82); }
 
-cabinet('tethered',-4,-7,'https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png',0x00eaff);
-cabinet('positive',4,-7,'https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png',0xff2bd6);
-cabinet('golf',-5,-19,'https://img.itch.zone/aW1nLzE2OTEzNjk4LnBuZw%3D%3D/original/cUUXu6.png',0xffe600);
-cabinet('taiyo',0,-23,'https://img.itch.zone/aW1nLzE2NTczODY5LnBuZw%3D%3D/original/O1%2Bu%2F9.png',0x00eaff);
-cabinet('bullets',-5,-31,'',0xffe600);
+cabinet('tethered',5.0,-7,'https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png',0x00eaff);
+cabinet('positive',5.3,-7,'https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png',0xff2bd6);
+cabinet('golf',5.0,-19,'https://img.itch.zone/aW1nLzE2OTEzNjk4LnBuZw%3D%3D/original/cUUXu6.png',0xffe600);
+cabinet('taiyo',5.3,-23,'https://img.itch.zone/aW1nLzE2NTczODY5LnBuZw%3D%3D/original/O1%2Bu%2F9.png',0x00eaff);
+cabinet('bullets',5.0,-31,'',0xffe600);
 
 
 // Large physical letters at the end of the route.
@@ -88,6 +88,7 @@ function pickGame(e){
  if(hit && hit.object.userData.gameId){ openGame(hit.object.userData.gameId); }
 }
 renderer.domElement.addEventListener('pointerdown',pickGame,{passive:true});
+renderer.domElement.style.cursor='default';
 renderer.domElement.addEventListener('pointermove',e=>{
  pointer.x=(e.clientX/innerWidth)*2-1; pointer.y=-(e.clientY/innerHeight)*2+1;
  raycaster.setFromCamera(pointer,camera);
@@ -96,7 +97,7 @@ renderer.domElement.addEventListener('pointermove',e=>{
 },{passive:true});
 
 function animate(){requestAnimationFrame(animate);scrollPos+=(scrollTarget-scrollPos)*.075;lookX+=(mouseX-lookX)*.04;lookY+=(mouseY-lookY)*.04;
- const routeZ=15-scrollPos*49; camera.position.x=lookX*1.0;camera.position.y=2.8-lookY*.35;camera.position.z=routeZ; camera.rotation.y=lookX*.055; camera.rotation.x=-lookY*.025;
+ const routeZ=15-scrollPos*49; camera.position.x=lookX*.75;camera.position.y=2.8-lookY*.35;camera.position.z=routeZ; camera.rotation.y=lookX*.055; camera.rotation.x=-lookY*.025;
  // move light accents with the route for a continuous cinematic feel
  cyan.position.z=routeZ-3; pink.position.z=routeZ-8; yellow.position.z=routeZ-15;
  renderer.render(scene,camera)}animate();
