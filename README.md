@@ -1,14 +1,14 @@
-# IncrediBro Games v14 - Responsive Website Prototype
+# IncrediBro Games website v15
 
-A clean, responsive static prototype based on the supplied visual direction.
+High-fidelity responsive recreation of the supplied IncrediBro Games homepage reference.
 
-- Real HTML/CSS content
-- Responsive desktop/tablet/mobile layout
-- Supplied Tethered Tilt and Be Positive artwork
-- Supplied IncrediBro streaming mascot
-- Neon atmospheric background
-- Subtle pointer parallax
-- Accessible normal links and text
-- No WebGL dependency
+## Files
+- `index.html` semantic/SEO-friendly page
+- `style.css` responsive visual system
+- `app.js` tiny interaction layer
+- `assets/` visual assets and reference crops
 
-Open index.html locally or deploy the folder to GitHub Pages.
+## Deploy
+Upload the contents to GitHub Pages, Netlify, Cloudflare Pages, or any static host. No build step is required.
+
+Replace placeholder social URLs in `index.html` with the studio's real profiles when ready.

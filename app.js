@@ -1,20 +1,6 @@
-const menu=document.getElementById('menu'), nav=document.getElementById('nav');
-menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
-document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
-
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-const cards=document.querySelectorAll('.game-card');
-window.addEventListener('pointermove',e=>{
-  const x=(e.clientX/innerWidth-.5), y=(e.clientY/innerHeight-.5);
-  document.querySelector('.hero-art')?.style.setProperty('transform',`translate3d(${x*8}px,${y*5}px,0)`);
-  document.querySelector('.cabinet')?.style.setProperty('box-shadow',`${-30-x*15}px ${40-y*10}px 80px #000, 0 0 ${55+Math.abs(x)*25}px rgba(31,99,255,.3)`);
-},{passive:true});
-
+// Small interaction layer: active nav state and gentle reveal effects.
+const links=[...document.querySelectorAll('.nav-links a')];
 const sections=[...document.querySelectorAll('main section[id]')];
-const links=[...document.querySelectorAll('.nav a')];
-const activeObserver=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')===`#${e.target.id}`))}})
-},{rootMargin:'-45% 0px -45% 0px'});
-sections.forEach(s=>activeObserver.observe(s));
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-35% 0px -55%'});
+sections.forEach(s=>io.observe(s));
+document.querySelectorAll('.game-card,.info-card').forEach((el,i)=>{el.style.transition='transform .35s ease, border-color .35s ease';el.addEventListener('mouseenter',()=>{el.style.transform='translateY(-3px)';el.style.borderColor='#ff1761'});el.addEventListener('mouseleave',()=>{el.style.transform='';el.style.borderColor=''})});
