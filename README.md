@@ -1,14 +1,13 @@
-# IncrediBro Games v7
+# IncrediBro Games - Living 3D Static Site
 
-Scroll-driven 3D company website.
+A clean, content-first studio website with an interactive Three.js environment used as an atmospheric background.
 
-- WebGL/Three.js 3D environment is the actual presentation layer.
-- Vertical scroll moves the camera down a designed route.
-- Mouse movement adds only subtle camera parallax.
-- Touch uses normal vertical page scrolling.
-- No keyboard controls, WASD, pointer lock, joystick, or free-look.
-- Click/tap game displays to open project details.
-- Bright, readable lighting and high-contrast game displays.
-- Company language is IncrediBro Games, not an arcade-themed UI.
+## Interaction
+- Normal HTML page scrolling
+- Subtle camera parallax from mouse position
+- Animated lights, particles and 3D cabinet silhouettes in the background
+- Hovering game cards changes the corresponding ambient light
+- No pointer lock, FPS controls or world-space UI
 
-Three.js is loaded from jsDelivr, so GitHub Pages needs internet access for the 3D layer.
+## Run
+Open `index.html` through a local/static web server for best results. Three.js is loaded from jsDelivr.
