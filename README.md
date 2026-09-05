@@ -1,14 +1,24 @@
-# IncrediBro Games website v15
+# IncrediBro Games v16 - JUICED
 
-High-fidelity responsive recreation of the supplied IncrediBro Games homepage reference.
+A high-energy responsive static studio website based on the supplied IncrediBro Games visual direction.
 
-## Files
-- `index.html` semantic/SEO-friendly page
-- `style.css` responsive visual system
-- `app.js` tiny interaction layer
-- `assets/` visual assets and reference crops
+## Included
+- Neon cinematic hero
+- Animated scanlines, grain, grid, sparks and cursor glow
+- Sticky glass navigation + scroll progress
+- Moving highlight ticker
+- Featured games with hover chips and 3D tilt
+- Tethered Tilt, Be Positive!, and 100 Bullets To Die
+- Game Jam showcase with the single supplied/generated Ball mascot
+- About / Press / Contact cards
+- Large final contact CTA
+- Scroll reveal animations
+- Magnetic buttons
+- Responsive mobile layout
+- Reduced-motion support
+- SEO/Open Graph metadata
 
-## Deploy
-Upload the contents to GitHub Pages, Netlify, Cloudflare Pages, or any static host. No build step is required.
+## Run
+Open `index.html` directly, or deploy the folder to GitHub Pages.
 
-Replace placeholder social URLs in `index.html` with the studio's real profiles when ready.
+No build process is required.
