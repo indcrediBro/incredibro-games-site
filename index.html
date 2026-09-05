@@ -4,135 +4,68 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IncrediBro Games</title>
-<meta name="description" content="IncrediBro Games is an independent game studio making compact, characterful games and experiments.">
+<meta name="description" content="IncrediBro Games is an independent game studio making compact, characterful games, prototypes and experiments.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="webgl" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-
+<div class="scanlines" aria-hidden="true"></div>
 <header class="site-header">
-  <a class="brand" href="#home" aria-label="IncrediBro Games home">
-    <span class="mark">IB</span>
-    <span class="brand-name">INCREDIBRO<br><i>GAMES</i></span>
-  </a>
-  <nav>
-    <a href="#games">Games</a>
-    <a href="#jams">Jams</a>
-    <a href="#studio">Studio</a>
-    <a href="#press">Press</a>
-  </nav>
-  <button id="menu" type="button" aria-label="Open navigation">☰</button>
+  <a class="brand" href="#home" aria-label="IncrediBro Games home"><span class="brand-word">INCREDIBRO</span><span class="brand-sub">GAMES</span></a>
+  <nav aria-label="Primary navigation"><a href="#games">GAMES</a><a href="#jams">JAMS</a><a href="#studio">STUDIO</a><a href="#press">PRESS</a><a href="#contact">CONTACT</a></nav>
+  <button id="menu" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
-
-<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
 <main>
 <section id="home" class="hero page-section">
-  <div class="wrap hero-inner">
-    <div class="hero-copy reveal">
-      <p class="eyebrow">INDEPENDENT GAME DEVELOPMENT</p>
-      <h1>We make<br><span>games.</span></h1>
-      <p class="lede">Small team. Strange ideas. Carefully made games, prototypes and experiments.</p>
-      <div class="actions">
-        <a class="button primary" href="#games">Explore our games <b>↓</b></a>
-        <a class="button ghost" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">Itch.io ↗</a>
-      </div>
-    </div>
-    <div class="hero-meta reveal">
-      <span>01</span>
-      <span class="line"></span>
-      <span>SCROLL TO EXPLORE</span>
-    </div>
+  <div class="hero-copy">
+    <p class="kicker">01 / INDEPENDENT GAME DEVELOPMENT</p>
+    <h1>INDEPENDENT<br><span>GAME</span><br>DEVELOPMENT</h1>
+    <p class="hero-lede">We make original games with creative ideas, polished mechanics and a love for fun.</p>
+    <div class="button-row"><a class="btn solid" href="#games">EXPLORE OUR GAMES <b>→</b></a><a class="btn outline" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">ITCH.IO ↗</a></div>
+  </div>
+  <div class="hero-social"><a href="https://www.twitch.tv/incrediball__" target="_blank" rel="noreferrer">TWITCH</a><a href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">ITCH</a></div>
+  <div class="scroll-cue"><span>SCROLL</span><i></i></div>
+</section>
+
+<section id="games" class="page-section games-section">
+  <div class="section-heading"><div><p class="kicker">02 / FEATURED GAMES</p><h2>FEATURED <span>GAMES</span></h2></div><p class="heading-copy">Games in progress, recent releases and the experiments worth showing off.</p></div>
+  <div class="featured-grid">
+    <article class="game-card featured"><a href="https://incredibro.itch.io/tethered-tilt" target="_blank" rel="noreferrer"><div class="game-image"><img src="https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png" alt="Tethered Tilt gameplay screenshot"><span class="tag">UPCOMING</span></div><div class="game-body"><div><h3>Tethered Tilt</h3><p>Tilt, flip and think ahead in this satisfying puzzle game.</p></div><span class="arrow">VIEW GAME →</span></div></a></article>
+    <article class="game-card"><a href="https://incredibro.itch.io/be-positive" target="_blank" rel="noreferrer"><div class="game-image"><img src="https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png" alt="Be Positive gameplay screenshot"><span class="tag pink">STEAM / VR</span></div><div class="game-body"><div><h3>Be Positive!</h3><p>A magnetic puzzle game about attraction and logic.</p></div><span class="arrow">VIEW GAME →</span></div></a></article>
+    <article class="game-card"><a href="https://incredibro.itch.io/100-bullets-to-die" target="_blank" rel="noreferrer"><div class="game-image bullets-image"><div class="bullet-art"><strong>100</strong><span>BULLETS<br>TO DIE</span></div><span class="tag yellow">GMTK 2026</span></div><div class="game-body"><div><h3>100 Bullets To Die</h3><p>Survive the impossible in this fast-paced shooter.</p></div><span class="arrow">VIEW GAME →</span></div></a></article>
   </div>
 </section>
 
-<section id="games" class="page-section section games-section">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">01 / FEATURED GAMES</p>
-        <h2>Things we're<br><em>building.</em></h2>
-      </div>
-      <p class="section-intro">A few current projects and recent experiments. Pick one and take a look.</p>
-    </div>
-
-    <div class="game-grid">
-      <article class="game-card game-card-large reveal">
-        <a href="https://incredibro.itch.io/tethered-tilt" target="_blank" rel="noreferrer">
-          <div class="thumb"><img src="https://img.itch.zone/aW1nLzI3NDE0NTA0LnBuZw%3D%3D/original/srvy4z.png" alt="Tethered Tilt screenshot"><span class="badge">UPCOMING</span></div>
-          <div class="game-info"><div><p class="card-kicker">PUZZLE / 3D</p><h3>Tethered Tilt</h3></div><span class="arrow">↗</span><p>A compact puzzle game about two cubes, a tether and a carefully designed collection of problems.</p></div>
-        </a>
-      </article>
-      <article class="game-card reveal">
-        <a href="https://incredibro.itch.io/be-positive" target="_blank" rel="noreferrer">
-          <div class="thumb"><img src="https://img.itch.zone/aW1nLzEzODQ4MTU0LnBuZw%3D%3D/original/LEGJGc.png" alt="Be Positive screenshot"><span class="badge pink">STEAM / VR</span></div>
-          <div class="game-info"><div><p class="card-kicker">PUZZLE / MAGNETIC</p><h3>Be Positive</h3></div><span class="arrow">↗</span><p>A magnetic cube puzzle game built around polarity, positioning and one good move.</p></div>
-        </a>
-      </article>
-      <article class="game-card reveal">
-        <a href="https://incredibro.itch.io/100-bullets-to-die" target="_blank" rel="noreferrer">
-          <div class="thumb bullets"><div><strong>100</strong><small>BULLETS<br>TO DIE</small></div><span class="badge yellow">GMTK 2026</span></div>
-          <div class="game-info"><div><p class="card-kicker">GAME JAM / SHOOTER</p><h3>100 Bullets To Die</h3></div><span class="arrow">↗</span><p>A fast top-down shooter built around one simple problem: you have 100 bullets.</p></div>
-        </a>
-      </article>
-    </div>
-    <div class="catalogue-link reveal"><a href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">Browse the full catalogue <span>↗</span></a></div>
+<section id="jams" class="page-section jams-section">
+  <div class="jams-panel">
+    <div class="jams-copy"><p class="kicker">03 / GAME JAMS</p><div class="big-number">32<span>+</span></div><h2>GAME <span>JAMS</span></h2><p>Dozens of game jams.<br>Hundreds of ideas.<br>Always learning.<br>Always building.</p><a class="btn outline" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">EXPLORE JAMS →</a></div>
+    <div class="mini-screens" aria-hidden="true"><div class="mini-screen s1"></div><div class="mini-screen s2"></div><div class="mini-screen s3"></div><div class="mini-screen s4"></div><div class="mini-screen s5"></div><div class="mini-screen s6"></div><div class="neon-sign">GAME<br>JAMS</div></div>
   </div>
 </section>
 
-<section id="jams" class="page-section section jams-section">
-  <div class="wrap jams-layout">
-    <div class="jam-copy reveal">
-      <p class="eyebrow">02 / GAME JAMS</p>
-      <div class="big-number">32<span>+</span></div>
-      <h2>Make.<br>Break.<br><em>Repeat.</em></h2>
-    </div>
-    <div class="jam-detail reveal">
-      <p class="section-label">A LOT OF GAMES</p>
-      <p>Four years of making games under ridiculous deadlines. Dozens of prototypes, a few releases and plenty of lessons.</p>
-      <p>Game jams are where ideas get tested quickly. Some disappear. Some turn into something worth keeping.</p>
-      <a class="text-link" href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">Browse the jam catalogue <span>↗</span></a>
-    </div>
+<section id="studio" class="page-section studio-section">
+  <div class="studio-grid">
+    <div class="studio-copy"><p class="kicker">04 / THE STUDIO</p><h2>WE ARE<br><span>INCREDIBRO</span><br>GAMES</h2><p>A one-person (for now) indie game studio based in India. Making games as a hobby turned into a mission.</p><p class="signature">IncrediBro</p><a class="btn outline" href="#contact">LEARN MORE →</a></div>
+    <div class="studio-scene" aria-hidden="true"><div class="desk"></div><div class="monitor"></div><div class="neon-phrase">KEEP<br>BUILDING<br>GAMES</div><div class="plant"></div></div>
   </div>
 </section>
 
-<section id="studio" class="page-section section studio-section">
-  <div class="wrap studio-layout">
-    <div class="studio-copy reveal">
-      <p class="eyebrow">03 / THE STUDIO</p>
-      <h2>Small<br><em>by design.</em></h2>
-      <p class="studio-lede">IncrediBro Games is an independent studio focused on compact, characterful games. Puzzle games, experiments, prototypes and whatever interesting idea comes next.</p>
-    </div>
-    <div class="stats reveal">
-      <div><b>4+</b><span>YEARS MAKING GAMES</span></div>
-      <div><b>32+</b><span>GAME JAMS</span></div>
-      <div><b>∞</b><span>IDEAS LEFT</span></div>
-    </div>
-  </div>
+<section id="press" class="page-section press-section">
+  <div class="press-panel"><div class="press-copy"><p class="kicker">05 / PRESS</p><h2>PRESS<br><span>KIT</span></h2><p>Logos, screenshots and key info. Everything you need.</p><a class="btn outline" href="mailto:hello@incredibrogames.com?subject=Press%20Kit%20Request">VIEW PRESS KIT →</a></div><div class="press-art"><div class="camera-icon"></div><div class="press-neon">PRESS</div></div></div>
 </section>
 
-<section id="press" class="page-section section press-section">
-  <div class="wrap press-box reveal">
-    <div class="press-copy">
-      <p class="eyebrow">04 / PRESS + CONTACT</p>
-      <h2>Let's<br><em>talk.</em></h2>
-      <p>Press, publishing, collaborations or just want to say hello?</p>
-    </div>
-    <div class="press-links">
-      <a href="mailto:hello@incredibrogames.com"><span>Email</span><b>hello@incredibrogames.com ↗</b></a>
-      <a href="mailto:hello@incredibrogames.com?subject=Press%20Kit%20Request"><span>Press kit</span><b>Request materials ↗</b></a>
-      <a href="https://www.twitch.tv/incrediball__" target="_blank" rel="noreferrer"><span>Twitch</span><b>Occasional streams ↗</b></a>
-    </div>
-  </div>
+<section id="contact" class="page-section contact-section">
+  <div class="contact-panel"><div><p class="kicker">06 / CONTACT</p><h2>LET'S <span>CONNECT</span></h2><p>For press, partnerships, publishing or anything else.</p><a class="mail" href="mailto:hello@incredibrogames.com">hello@incredibrogames.com</a><div class="contact-social"><a href="https://incredibro.itch.io/" target="_blank" rel="noreferrer">ITCH</a><a href="https://www.twitch.tv/incrediball__" target="_blank" rel="noreferrer">TWITCH</a></div></div><div class="mail-art"><div class="envelope">✉</div></div></div>
 </section>
+
+<section class="principles page-section"><div class="principle-list"><div><b>✦</b><span><strong>Interactive 3D Background</strong><small>Mouse parallax & subtle animations</small></span></div><div><b>✦</b><span><strong>Lightweight & Fast</strong><small>Optimized for performance</small></span></div><div><b>✦</b><span><strong>Mobile Friendly</strong><small>Beautiful experience on all devices</small></span></div><div><b>✦</b><span><strong>Accessible</strong><small>Works with or without WebGL</small></span></div></div><div class="fallback-note"><div class="laptop-icon"></div><p>If WebGL is not supported,<br>a static fallback is shown<br>for a seamless experience.</p></div></section>
 </main>
-
-<footer class="wrap"><span>© 2026 INCREDIBRO GAMES</span><span>BUILT INDEPENDENTLY.</span></footer>
+<footer><span>© 2026 INCREDIBRO GAMES</span><span>BUILT INDEPENDENTLY.</span></footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>
