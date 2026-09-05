@@ -1,13 +1,21 @@
-# IncrediBro Games - Living 3D Static Site
+# IncrediBro Games v12
 
-A clean, content-first studio website with an interactive Three.js environment used as an atmospheric background.
+Static studio website with a living Three.js background.
 
-## Interaction
-- Normal HTML page scrolling
-- Subtle camera parallax from mouse position
-- Animated lights, particles and 3D cabinet silhouettes in the background
-- Hovering game cards changes the corresponding ambient light
-- No pointer lock, FPS controls or world-space UI
+## Design direction
+- Clean editorial website inspired by the supplied IncrediBro Games mockup.
+- Normal HTML/CSS content and navigation.
+- Three.js is atmospheric background only.
+- Real arcade cabinet GLB included as `cabinet.glb`.
+- Mouse movement creates subtle camera parallax.
+- Scrolling moves the 3D environment slowly behind the page.
+- Game cards remain ordinary HTML and never depend on the 3D layer.
+- Mobile layout simplifies the composition rather than forcing the desktop scene onto the screen.
 
-## Run
-Open `index.html` through a local/static web server for best results. Three.js is loaded from jsDelivr.
+## Run locally
+Serve this folder from a local web server because ES modules and GLTF loading require HTTP.
+
+Examples:
+- VS Code Live Server
+- `python -m http.server`
+- GitHub Pages
